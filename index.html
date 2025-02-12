@@ -18,11 +18,40 @@
             height: 100vh;
             border: none;
         }
+        /* Button Styling */
+        .top-center-button {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 1000; /* Ensures it stays above the iframe */
+            transition: background 0.3s ease;
+        }
+        .top-center-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Centered Blue Button -->
+    <button class="top-center-button" onclick="window.location.href='https://sites.google.com/view/blendoptimum3d/home'">
+        Go to Blend Optimum 3D
+    </button>
+
+    <!-- Embedded Spline Model -->
     <iframe src="https://my.spline.design/3dtextbluecopy-dbd14ddcb0cd4ecec26eadcc84aad15b/" 
-            allowfullscreen>
+            frameborder="0" 
+            width="100%" 
+            height="100%">
     </iframe>
+
 </body>
 </html>
