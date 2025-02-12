@@ -3,10 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Website</title>
+    <title>3D Model with Mouse Control</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@loaders.gl/gltf@3.1.2/dist/dist.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My GitHub Website!</h1>
-    <p>This is my first website hosted on GitHub Pages.</p>
+    <script>
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Load 3D Model (Replace with your own)
+        const loader = new THREE.GLTFLoader();
+        loader.load('https://model-url.glb', function (gltf) {
+            const model = gltf.scene;
+            scene.add(model);
+            model.position.set(0, 0, 0);
+            camera.position.z = 2;
+
+            // Mouse movement
+            document.addEventListener('mousemove', (event) => {
+                const x = (event.clientX / window.innerWidth) * 2 - 1;
+                const y = (event.clientY / window.innerHeight) * 2 - 1;
+                model.rotation.y = x * Math.PI;
+                model.rotation.x = -y * Math.PI;
+            });
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                renderer.render(scene, camera);
+            }
+            animate();
+        });
+    </script>
 </body>
 </html>
