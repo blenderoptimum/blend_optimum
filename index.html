@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Android Spline Embed</title>
+    <title>Embedded Spline Model with Button</title>
     <style>
         body, html {
             margin: 0;
@@ -19,26 +19,53 @@
             height: 100vh;
             border: none;
         }
+        /* Button Styling */
+        .top-center-button {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 1000; /* Ensures it stays above the iframe */
+            transition: background 0.3s ease;
+        }
+        .top-center-button:hover {
+            background-color: #0056b3;
+        }
+        /* Cover the bottom-right corner */
+        .iframe-logo-cover {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 225px; /* Widened by ~2cm */
+            height: 100px; /* Adjust height to match the logo size */
+            background-color: black; /* Black Cover Box */
+            z-index: 1100; /* Ensures it stays above the iframe */
+        }
     </style>
 </head>
 <body>
 
+    <!-- Centered Blue Button Outside the iframe -->
+    <button class="top-center-button" onclick="window.location.href='https://sites.google.com/view/blendoptimum3d/home'">
+        Go to Blend Optimum 3D
+    </button>
+
+    <!-- Cover the "Made by Spline" logo in the bottom-right corner -->
+    <div class="iframe-logo-cover"></div>
+
     <!-- Embedded Spline Model -->
-    <iframe src="https://my.spline.design/robotfollowcursorforlandingpage-a9670497cf273c4e2de2a6f1382f078f/" frameborder="0" width="100%" height="100%"></iframe>
-
-    <script>
-        // Function to detect if the device is Android
-        function isAndroid() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            return /android/i.test(userAgent); // Detects Android devices
-        }
-
-        // Check if the user is on an Android device
-        if (!isAndroid()) {
-            // Optionally, you can add a message or embed another content for non-Android devices
-            document.body.innerHTML = "<h1>Sorry, this content is available only for Android devices.</h1>";
-        }
-    </script>
+    <iframe src="https://my.spline.design/robotfollowcursorforlandingpage-a9670497cf273c4e2de2a6f1382f078f/" 
+            frameborder="0" 
+            width="100%" 
+            height="100%">
+    </iframe>
 
 </body>
 </html>
