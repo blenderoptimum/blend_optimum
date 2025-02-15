@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Spline Model with Button</title>
+    <title>Embedded Spline Model with Neon Buttons</title>
     <style>
         body, html {
             margin: 0;
@@ -11,7 +11,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: black; /* Black Background */
+            background-color: black;
         }
         iframe {
             display: block;
@@ -19,43 +19,76 @@
             height: 100vh;
             border: none;
         }
-        /* Button Styling */
-        .top-center-button {
+        /* Button Container */
+        .button-container {
             position: absolute;
             top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+            opacity: 0; /* Initially hidden */
+            animation: fadeIn 1.5s ease-in-out forwards;
+            animation-delay: 4s; /* Delay the appearance by 4 seconds */
+        }
+        /* Dark Blue Neon Button */
+        .custom-button {
+            padding: 12px 24px;
+            background: transparent;
+            color: #1E3A8A; /* Dark Blue */
+            border: 2px solid #1E3A8A;
+            border-radius: 6px;
             font-size: 16px;
             cursor: pointer;
-            z-index: 1000; /* Ensures it stays above the iframe */
-            transition: background 0.3s ease;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px #1E3A8A, 0 0 30px rgba(30, 58, 138, 0.5);
         }
-        .top-center-button:hover {
-            background-color: #0056b3;
+        .custom-button:hover {
+            background: #1E3A8A;
+            color: white;
+            box-shadow: 0 0 20px #1E3A8A, 0 0 50px rgba(30, 58, 138, 0.8);
+            transform: scale(1.08);
+        }
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         /* Cover the bottom-right corner */
         .iframe-logo-cover {
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 225px; /* Widened by ~2cm */
-            height: 100px; /* Adjust height to match the logo size */
-            background-color: black; /* Black Cover Box */
-            z-index: 1100; /* Ensures it stays above the iframe */
+            width: 225px;
+            height: 100px;
+            background-color: black;
+            z-index: 1100;
         }
     </style>
 </head>
 <body>
 
-    <!-- Centered Blue Button Outside the iframe -->
-    <button class="top-center-button" onclick="window.location.href='https://blenderoptimum.github.io/BLEND2/'">
-        Go to Blend Optimum 3D
-    </button>
+    <!-- Button Container in the Top Left -->
+    <div class="button-container">
+        <button class="custom-button" onclick="window.location.href='https://blenderoptimum.github.io/BLEND2/'">
+            Go to Blend Optimum 3D
+        </button>
+        <button class="custom-button" onclick="window.location.href='https://sites.google.com/view/blendoptimum3d/home'">
+            Home
+        </button>
+    </div>
 
     <!-- Cover the "Made by Spline" logo in the bottom-right corner -->
     <div class="iframe-logo-cover"></div>
@@ -64,7 +97,8 @@
     <iframe src="https://my.spline.design/robotfollowcursorforlandingpage-a9670497cf273c4e2de2a6f1382f078f/" 
             frameborder="0" 
             width="100%" 
-            height="100%">
+            height="100%"
+            loading="lazy">
     </iframe>
 
 </body>
